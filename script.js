@@ -4,7 +4,12 @@ const validateInput = (el) => {
     if(el.value === ""){
         resultsContainer.innerHTML = "<p>Type something in the above search input</p>"
     }else{
-        generateResults(el.value, el)
+        // default search
+        // console.log(el.value); // to see what happen in console
+        // generateResults(el.value, el) //that send new request for each new character
+    
+        //Debounce
+        updateDebounce(el.value, el);
     }
 }
 
@@ -35,3 +40,13 @@ const generateResults = (searchValue, inputField) => {
         }
     })
 }
+const Debounce=function(cb,delay=1000){
+    let timeout;
+    return(searchValue, inputField)=>{
+        clearTimeout(timeout);
+        timeout=setTimeout(()=>{
+            cb(searchValue,inputField);
+        },delay)
+    }
+}
+const updateDebounce=Debounce(generateResults);
