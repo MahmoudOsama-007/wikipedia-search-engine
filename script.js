@@ -1,7 +1,8 @@
 let resultsContainer = document.getElementsByClassName("container")[0]
+const regex=/^\s*$/;
 
 const validateInput = (el) => {
-    if(el.value === ""){
+    if(regex.test(el.value)){
         resultsContainer.innerHTML = "<p>Type something in the above search input</p>"
     }else{
         // default search
